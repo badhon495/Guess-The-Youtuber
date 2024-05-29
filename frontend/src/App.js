@@ -19,7 +19,7 @@ const App = () => {
 
     const fetchVideoData = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/get-video');
+            const response = await axios.get('/api/get-video');
             setThumbnail(response.data.thumbnail);
             setChannelTitle(response.data.channelTitle);
             setHint(''); // Reset hint
