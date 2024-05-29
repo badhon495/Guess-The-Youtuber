@@ -83,6 +83,7 @@ const App = () => {
             </header>
             <main className="content">
                 <h1>Who is This YouTuber?</h1>
+                <p>Enter the name of the YouTuber whose video is shown below. As there is no time limit, use your search skill to find the youtuber name.</p>
                 <div className="game-container">
                     <img src={thumbnail} alt="YouTube Thumbnail" />
                     <form onSubmit={handleSubmit}>
