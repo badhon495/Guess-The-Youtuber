@@ -1,117 +1,117 @@
 /* App.css */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .App {
-    text-align: center;
-    transition: background-color 0.5s, color 0.5s;
+  text-align: center;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 .dark-mode {
-    background-color: #121212;
-    color: #ffffff;
+  background-color: #121212;
+  color: #ffffff;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: #333;
-    color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #333;
+  color: #fff;
 }
 
 .dark-mode-button {
-    background: #444;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+  background: #444;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
 }
 
 .hamburger {
-    font-size: 24px;
-    cursor: pointer;
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .dropdown-menu {
-    position: absolute;
-    top: 50px;
-    left: 20px;
-    background: #333;
-    color: #fff;
-    border: 1px solid #444;
-    padding: 10px;
-    z-index: 1000;
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  background: #333;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  z-index: 1000;
 }
 
 .dropdown-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .dropdown-menu ul li {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .dropdown-menu ul li a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 .dropdown-menu ul li a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .game-container {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 input[type="text"] {
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button {
-    padding: 10px 20px;
-    background: #008cba;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  padding: 10px 20px;
+  background: #008cba;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button:hover {
-    background: #005f5f;
+  background: #005f5f;
 }
 
 .hint {
-    color: red;
-    font-weight: bold;
-    margin-top: 10px;
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .status {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 footer {
-    margin-top: 50px;
-    padding: 10px;
-    background: #333;
-    color: #fff;
+  margin-top: 50px;
+  padding: 10px;
+  background: #333;
+  color: #fff;
 }
 
 footer a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

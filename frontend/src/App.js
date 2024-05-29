@@ -19,7 +19,7 @@ const App = () => {
 
     const fetchVideoData = async () => {
         try {
-            const response = await axios.get('/api/get-video');
+            const response = await axios.get('http://localhost:5000/api/get-video');
             setThumbnail(response.data.thumbnail);
             setChannelTitle(response.data.channelTitle);
             setHint(''); // Reset hint
@@ -83,7 +83,6 @@ const App = () => {
             </header>
             <main className="content">
                 <h1>Who is This YouTuber?</h1>
-                <p>Enter the name of the YouTuber whose video is shown below. As there is no time limit, use your search skill to find the youtuber name.</p>
                 <div className="game-container">
                     <img src={thumbnail} alt="YouTube Thumbnail" />
                     <form onSubmit={handleSubmit}>
