@@ -49,6 +49,9 @@
 
 2. Start the frontend development server:
     ```sh
+    npm init -y
+    npm install axios
+    npm install express
     npm start
     ```
 
