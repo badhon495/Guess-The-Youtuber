@@ -18,16 +18,11 @@ const App = () => {
     }, []);
 
     const fetchVideoData = async () => {
-        try {
-            const response = await axios.get('http://localhost:5000/api/get-video');
-            setThumbnail(response.data.thumbnail);
-            setChannelTitle(response.data.channelTitle);
-            setHint(''); // Reset hint
-            setAttempts(0); // Reset attempts
-        } catch (error) {
-            console.error('Error fetching video data:', error);
-        }
+        const response = await axios.get('/api/get-video');
+        setThumbnail(response.data.thumbnail);
+        setChannelTitle(response.data.channelTitle);
     };
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
