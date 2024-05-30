@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Guess-The-Youtuber/static/css/main.7f40f90c.css",
+    "main.js": "/Guess-The-Youtuber/static/js/main.bad354fb.js",
+    "static/js/488.91739dd5.chunk.js": "/Guess-The-Youtuber/static/js/488.91739dd5.chunk.js",
+    "index.html": "/Guess-The-Youtuber/index.html",
+    "main.7f40f90c.css.map": "/Guess-The-Youtuber/static/css/main.7f40f90c.css.map",
+    "main.bad354fb.js.map": "/Guess-The-Youtuber/static/js/main.bad354fb.js.map",
+    "488.91739dd5.chunk.js.map": "/Guess-The-Youtuber/static/js/488.91739dd5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7f40f90c.css",
+    "static/js/main.bad354fb.js"
+  ]
+}
