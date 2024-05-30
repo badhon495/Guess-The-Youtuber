@@ -18,7 +18,7 @@ const App = () => {
     }, []);
 
     const fetchVideoData = async () => {
-        const response = await axios.get('/api/get-video');
+        const response = await axios.get('https://guess-the-youtuber.vercel.app/api/get-video');
         setThumbnail(response.data.thumbnail);
         setChannelTitle(response.data.channelTitle);
     };
