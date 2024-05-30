@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import sun from './components/dark_mode_image/sun.png';
+import moon from './components/dark_mode_image/moon.png';
+
 
 const App = () => {
     const [thumbnail, setThumbnail] = useState('');
@@ -10,19 +13,28 @@ const App = () => {
     const [lives, setLives] = useState(3);
     const [hint, setHint] = useState('');
     const [attempts, setAttempts] = useState(0);
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [apiDown, setApiDown] = useState(false);
 
     useEffect(() => {
         fetchVideoData();
     }, []);
-
-    const fetchVideoData = async () => {
-        const response = await axios.get('https://guess-the-youtuber.vercel.app/api/get-video');
-        setThumbnail(response.data.thumbnail);
-        setChannelTitle(response.data.channelTitle);
-    };
     
+    const fetchVideoData = async () => {
+        try {
+            const response = await axios.get('https://guess-the-youtuber.vercel.app/api/get-video');
+            setThumbnail(response.data.thumbnail);
+            setChannelTitle(response.data.channelTitle);
+            setHint(''); // Reset hint
+            setAttempts(0); // Reset attempts
+            setApiDown(false); // Reset API down state
+        } catch (error) {
+            console.error('Error fetching video data:', error);
+            setApiDown(true); // Set API down state
+        }
+    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -73,11 +85,12 @@ const App = () => {
                     </nav>
                 )}
                 <button className="dark-mode-button" onClick={toggleDarkMode}>
-                    {darkMode ? 'Light Mode' : 'Dark Mode'}
-                </button>
+    {darkMode ? <img src={sun} alt="Light Mode" /> : <img src={moon} alt="Dark Mode" />}
+</button>
             </header>
             <main className="content">
                 <h1>Who is This YouTuber?</h1>
+                {apiDown && <div className="api-down">API Down</div>}
                 <div className="game-container">
                     <img src={thumbnail} alt="YouTube Thumbnail" />
                     <form onSubmit={handleSubmit}>
