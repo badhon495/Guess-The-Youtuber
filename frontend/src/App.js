@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import sun from './components/dark_mode_image/sun.png';
+import moon from './components/dark_mode_image/moon.png';
+
 
 const App = () => {
     const [thumbnail, setThumbnail] = useState('');
@@ -10,8 +13,11 @@ const App = () => {
     const [lives, setLives] = useState(3);
     const [hint, setHint] = useState('');
     const [attempts, setAttempts] = useState(0);
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [apiDown, setApiDown] = useState(false);
+    const [buttonClicked, setButtonClicked] = useState(false);
+
 
     useEffect(() => {
         fetchVideoData();
@@ -24,13 +30,18 @@ const App = () => {
             setChannelTitle(response.data.channelTitle);
             setHint(''); // Reset hint
             setAttempts(0); // Reset attempts
+            setApiDown(false); // Reset API down state
         } catch (error) {
             console.error('Error fetching video data:', error);
+            setApiDown(true); // Set API down state
         }
     };
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        setButtonClicked(true);
+        setTimeout(() => setButtonClicked(false), 9000);
         if (userInput.toLowerCase() === channelTitle.toLowerCase()) {
             setScore(score + 1);
             fetchVideoData();
@@ -78,22 +89,24 @@ const App = () => {
                     </nav>
                 )}
                 <button className="dark-mode-button" onClick={toggleDarkMode}>
-                    {darkMode ? 'Light Mode' : 'Dark Mode'}
-                </button>
+    {darkMode ? <img src={sun} alt="Light Mode" /> : <img src={moon} alt="Dark Mode" />}
+</button>
             </header>
             <main className="content">
                 <h1>Who is This YouTuber?</h1>
+                <p>Gaze upon the thumbnail and let your search prowess guide you through the digital maze. Unravel the enigma and uncover the YouTuber's name hidden within the vibrant video tapestry</p>
+                {apiDown && <div className="api-down">API Down</div>}
                 <div className="game-container">
-                    <img src={thumbnail} alt="YouTube Thumbnail" />
+                    <img src={thumbnail}/>
                     <form onSubmit={handleSubmit}>
-                        <input 
-                            type="text" 
-                            value={userInput} 
-                            onChange={(e) => setUserInput(e.target.value)} 
-                            placeholder="Enter YouTuber's Name" 
-                        />
-                        <button type="submit">Submit</button>
-                    </form>
+            <input 
+                type="text" 
+                value={userInput} 
+                onChange={(e) => setUserInput(e.target.value)} 
+                placeholder="Enter YouTuber's Name" 
+            />
+            <button type="submit" className={buttonClicked ? 'circle click' : ''}>Submit</button>
+        </form>
                     {hint && <p className="hint">Hint: {hint}</p>}
                     <div className="status">
                         <p>Score: {score}</p>
@@ -102,10 +115,8 @@ const App = () => {
                 </div>
             </main>
             <footer>
-                <a href="https://github.com/your-github-profile" target="_blank" rel="noopener noreferrer">
-                    My GitHub
-                </a>
-            </footer>
+    Created by <a href="https://github.com/badhon495" target="_blank" rel="noopener noreferrer">badhon495</a>
+</footer>
         </div>
     );
 };

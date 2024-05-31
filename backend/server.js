@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const YOUTUBE_API_KEY = 'AIzaSyBRX-WIPHqzrzmMaAaWPNkYMzxeSq8UsBs';
+const YOUTUBE_API_KEY = 'Your API Key Here';
 
 app.use(cors());
 
