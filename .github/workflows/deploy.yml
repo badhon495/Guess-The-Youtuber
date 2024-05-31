@@ -14,29 +14,20 @@ jobs:
         uses: actions/checkout@v3  # Updated to the latest version
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3  # Updated to the latest version
+        uses: actions/setup-node@v2
         with:
-          node-version: '20.x'  # Use Node.js 20
+          node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: frontend
-
-      - name: Build project
-        run: npm run build
-        working-directory: frontend
-
-      - name: Deploy to GitHub Pages
-        run: npm run deploy
-        working-directory: frontend
-
-      - name: Clean up gh-pages branch
+      - name: Install and Build # This example project is built using npm and outputs to `build`
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout --orphan temp
-          git add -A
-          git commit -am "cleanup"
-          git branch -D gh-pages
-          git branch -m gh-pages
-          git push -f origin gh-pages
+          npm ci
+          npm run build
+        working-directory: ./frontend
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          GITHUB_TOKEN: ${{ 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 }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: frontend/build # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
