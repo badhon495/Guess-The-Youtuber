@@ -97,8 +97,9 @@ input[type="text"], button {
 
 /* Styles for dark mode */
 .dark-mode input[type="text"] {
-    border: 1px solid #555; /* Dark gray border */
+    border: 1px solid #334491; /* Dark gray border */
     background: #121212; /* Dark gray background */
+    color: #ffffff; /* White text */
 }
 
 button {
@@ -114,13 +115,6 @@ button {
         width: auto; /* Reset the width */
     }
 }
-
-/* Styles for dark mode */
-.dark-mode input[type="text"], .dark-mode button {
-    border-color: #fff;
-    color: #353333;
-}
-
 
 
 .hint {
