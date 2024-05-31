@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Updated to the latest version
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3  # Updated to the latest version
+        uses: actions/setup-node@v3
         with:
-          node-version: '16.x'  # Use Node.js 16
+          node-version: '16.x'
 
       - name: Install dependencies
         run: npm install
@@ -26,8 +26,13 @@ jobs:
         run: npm run build
         working-directory: frontend
 
+      - name: Set Git user
+        run: |
+          git config --global user.email "badhon495@gmail.com"
+          git config --global user.name "badhon"
+
       - name: Deploy to GitHub Pages
         run: npm run deploy
         env:
-          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}  # Use the GitHub token
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN }}
         working-directory: frontend
