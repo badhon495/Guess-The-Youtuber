@@ -16,8 +16,6 @@ const App = () => {
     const [darkMode, setDarkMode] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
     const [apiDown, setApiDown] = useState(false);
-    const [buttonClicked, setButtonClicked] = useState(false);
-
 
     useEffect(() => {
         fetchVideoData();
@@ -38,11 +36,8 @@ const App = () => {
     };
 
 
- 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setButtonClicked(true);
-        setTimeout(() => setButtonClicked(false), 9000);
         if (userInput.toLowerCase() === channelTitle.toLowerCase()) {
             setScore(score + 1);
             fetchVideoData();
@@ -95,19 +90,19 @@ const App = () => {
             </header>
             <main className="content">
                 <h1>Who is This YouTuber?</h1>
-                <p>Gaze upon the thumbnail and let your search prowess guide you through the digital maze. Unravel the enigma and uncover the YouTuber's name hidden within the vibrant video tapestry</p>
+                <p>Enter the name of the YouTuber from their thumbnail of the video. As there is no time restriction use your serach ability to find their youtube channel name</p>
                 {apiDown && <div className="api-down">API Down</div>}
                 <div className="game-container">
-                    <img src={thumbnail}/>
+                    <img src={thumbnail} alt="YouTube Thumbnail" />
                     <form onSubmit={handleSubmit}>
-            <input 
-                type="text" 
-                value={userInput} 
-                onChange={(e) => setUserInput(e.target.value)} 
-                placeholder="Enter YouTuber's Name" 
-            />
-            <button type="submit" className={buttonClicked ? 'circle click' : ''}>Submit</button>
-        </form>
+                        <input 
+                            type="text" 
+                            value={userInput} 
+                            onChange={(e) => setUserInput(e.target.value)} 
+                            placeholder="Enter YouTuber's Name" 
+                        />
+                        <button type="submit">Submit</button>
+                    </form>
                     {hint && <p className="hint">Hint: {hint}</p>}
                     <div className="status">
                         <p>Score: {score}</p>
@@ -116,8 +111,10 @@ const App = () => {
                 </div>
             </main>
             <footer>
-    Created by <a href="https://github.com/badhon495" target="_blank" rel="noopener noreferrer">badhon495</a>
-</footer>
+                <a href="https://github.com/your-github-profile" target="_blank" rel="noopener noreferrer">
+                    My GitHub
+                </a>
+            </footer>
         </div>
     );
 };
