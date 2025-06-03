@@ -10,6 +10,10 @@ frontend/node_modules/
 .env.production.local
 backend/.env
 
+# Package lock files (optional - you can keep these for consistency)
+package-lock.json
+frontend/package-lock.json
+
 # Build outputs
 frontend/build/
 
