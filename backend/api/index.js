@@ -14,9 +14,8 @@ try {
 }
 
 const app = express();
-app.use(cors({ origin: true }));
 
-// Set CORS headers for all responses
+// Set CORS headers for all responses (must be before any routes)
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -26,6 +25,9 @@ app.use((req, res, next) => {
     }
     next();
 });
+
+// Use CORS middleware (after custom headers, to handle preflight and errors)
+app.use(cors({ origin: true }));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
