@@ -26,7 +26,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Load channel names from the file
-const channelNamesPath = path.join(__dirname, '..', 'channel_names.txt');
+const channelNamesPath = path.join(__dirname, '../channel_names.txt');
 const channelNames = fs.readFileSync(channelNamesPath, 'utf-8').split('\n');
 
 app.get('/api/get-video', async (req, res) => {
