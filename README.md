@@ -1,6 +1,6 @@
-# Guess The YouTuber
-
 <div align="center">
+
+# Guess The YouTuber
 
 ![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat-square&logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)
@@ -8,8 +8,11 @@
 
 </div>
 
-## Overview
+<div align="center">
+
 "Guess The YouTuber" is an interactive web-based guessing game inspired by [guessme.io](https://guessme.io/). Players view YouTube video thumbnails and attempt to guess the YouTuber's name. The game features a beautiful animated particle background, scoring system, lives counter, and hint system for an engaging gaming experience.
+
+</div>
 
 ## Features
 
