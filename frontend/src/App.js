@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import ParticlesBackground from './components/ParticlesBackground';
+import FloatingParticles from './components/FloatingParticles';
 
 const App = () => {
     const [thumbnail, setThumbnail] = useState('');
@@ -62,7 +62,7 @@ const App = () => {
 
     return (
         <div className="App">  
-            <ParticlesBackground />
+            <FloatingParticles />
             
             <main className="content">
                 <h1>Guess The YouTuber</h1>
