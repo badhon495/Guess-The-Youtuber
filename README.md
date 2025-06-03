@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![React](https://img.shields.io/badge/React-18.x-61DAFB?style=flat-square&logo=react)
+![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat-square&logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript)
 
@@ -13,209 +13,88 @@
 
 ## Features
 
-### Core Game Features
-- **YouTube Thumbnail Display**: Random thumbnails from popular YouTubers
-- **Intelligent Scoring System**: Points awarded for correct guesses
-- **Lives System**: 3 lives with game over mechanics
-- **Smart Hint System**: Partial channel name revealed after first wrong attempt
-- **Real-time Feedback**: Instant response to player inputs
+## Features
 
-### Visual Features
-- **Animated Particle Background**: 80+ floating particles inspired by guessme.io
-- **Dark Theme Design**: Modern dark aesthetic with glass-morphism effects
-- **Interactive Animations**: 
-  - 4 different particle movement patterns (floating, wave, zigzag, spiral)
-  - Mouse hover effects that scale and brighten particles
-  - Click burst effects with radial particle explosions
-- **Mobile Responsive**: Optimized for all screen sizes
-- **Glass-morphism UI**: Modern backdrop blur effects
-
+- **YouTube Thumbnail Guessing**: Random thumbnails from popular YouTubers
+- **Scoring & Lives System**: Points for correct guesses, 3 lives with game over
+- **Smart Hints**: Partial channel name revealed after first wrong attempt
+- **Animated Particles**: 80+ floating particles with interactive effects
+- **Dark Theme**: Modern glass-morphism UI design
+- **Mobile Responsive**: Optimized for all devices
 
 ## Technology Stack
 
-### Frontend
-- **React 18.x**: Modern React with hooks
-- **CSS3**: Advanced animations and glass-morphism effects
-- **Axios**: HTTP client for API requests
-- **Custom Particles System**: JavaScript + CSS animated background
-
-### Backend
-- **Node.js**: Serverless functions
-- **Express.js**: Web framework
-- **YouTube Data API v3**: Fetching channel and video data
-- **Vercel**: Deployment platform
-
-### Development Tools
-- **Create React App**: React development environment
-- **npm Workspaces**: Monorepo management
-- **ESLint**: Code linting
-- **Git**: Version control
+- **Frontend**: React 18, CSS3 animations, Axios
+- **Backend**: Node.js, Express, YouTube Data API v3
+- **Deployment**: Vercel
 
 ## Prerequisites
 - Node.js 18+ 
 - npm (Node Package Manager)
 - YouTube Data API v3 key
 
-## Installation
+## Quick Start
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/badhon495/Guess-The-Youtuber.git
-   cd Guess-The-Youtuber
-   ```
+For a quick setup, run these commands:
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-   This installs dependencies for both frontend and backend using npm workspaces.
+```bash
+# Clone and setup
+git clone https://github.com/badhon495/Guess-The-Youtuber.git
+cd Guess-The-Youtuber
+npm install
 
-3. **Set up YouTube Data API key:**
-   - Create `.env` file in the root directory
-   - Add your API key:
-     ```env
-     YOUTUBE_API_KEY=your_youtube_api_key_here
-     ```
-   
-   **Alternative:** Update the API key directly in `backend/api/index.js`
+# Setup environment variables
+cp frontend/.env.example frontend/.env
+cp backend/.env.example backend/.env
 
-4. **Configure channels (optional):**
-   - Edit `backend/channel_names.txt` to add/remove YouTuber channels
-   - Each channel name should be on a new line
+# Add your YouTube API key to backend/.env file
+echo "YOUTUBE_API_KEY=your_actual_api_key_here" > backend/.env
 
-## Running the Project
+# Start both servers
+npm run start:backend &
+npm run start:frontend
+```
 
-### Development Mode
-1. **Start backend server:**
-   ```bash
-   npm run start:backend
-   ```
+Then open `http://localhost:3000` in your browser!
 
-2. **Start frontend development server:**
-   ```bash
-   npm run start:frontend
-   ```
-
-3. **Open browser:** Navigate to `http://localhost:3000/Guess-The-Youtuber`
-
-### Production
-The project is deployed on Vercel and accessible at the live URL.
 
 ## Project Structure
 
 ```
 Guess-The-Youtuber/
-├── package.json                 # Root package.json with workspaces
-├── README.md                   # Project documentation
-├── vercel.json                 # Vercel deployment config
-├── backend/                    # Backend serverless functions
-│   ├── api/
-│   │   └── index.js           # Main API endpoint
-│   ├── channel_names.txt      # YouTuber channels list
-│   ├── package.json           # Backend dependencies
-│   └── vercel.json            # Backend Vercel config
-└── frontend/                   # React frontend application
-    ├── public/                 # Static assets
+├── .env.example                # Environment variables
+├── backend/
+│   ├── api/index.js           # Main API endpoint
+│   └── channel_names.txt      # YouTuber channels list
+└── frontend/
     ├── src/
     │   ├── App.js             # Main React component
-    │   ├── App.css            # Main styling with dark theme
-    │   ├── components/
-    │   │   ├── FloatingParticles.js   # Custom particles system
-    │   │   └── FloatingParticles.css  # Particles animations
-    │   └── index.js           # React entry point
-    ├── package.json           # Frontend dependencies
-    └── PARTICLES_IMPLEMENTATION.md   # Particles documentation
+    │   └── components/        # Floating particles system
+    └── public/                # Static assets
 ```
-
-## Particles System
-
-### Implementation
-- **Custom JavaScript + CSS**: 80 animated particles with varied colors
-- **Performance Optimized**: GPU-accelerated transforms and will-change properties
-- **Interactive Effects**: Mouse hover scaling, click burst animations
-- **Multiple Patterns**: 4 different animation types for visual variety
-
-### Color Palette
-```javascript
-['#ff6b9d', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7', '#a8e6cf', '#ff8a80', '#ff9ff3', '#54a0ff', '#5f27cd']
-```
-
-### Animation Types
-1. **Standard Float**: Straight upward movement with rotation
-2. **Wave Motion**: Side-to-side floating pattern  
-3. **Zigzag**: Dynamic left-right movement
-4. **Spiral**: Rotating movement with scaling effects
 
 ## How It Works
 
-### Backend Flow
-1. Reads random channel name from `channel_names.txt`
-2. Fetches channel data using YouTube Data API v3
-3. Validates channel has sufficient subscribers (10M+)
-4. Retrieves latest video thumbnail and metadata
-5. Returns data to frontend via `/api/get-video` endpoint
+1. Backend fetches random YouTuber data using YouTube Data API v3
+2. Frontend displays video thumbnail to player
+3. Player guesses the YouTuber's name
+4. Correct guess: +1 point, new video loads
+5. Wrong guess: Hint shown, then life deducted after second wrong guess
 
-### Frontend Flow
-1. Displays YouTube thumbnail to player
-2. Accepts player's guess through input form
-3. Compares guess with actual channel name (case-insensitive)
-4. **Correct guess**: Increment score, load new video
-5. **First wrong guess**: Show hint (partial channel name)
-6. **Second wrong guess**: Deduct life, load new video
-7. **Game over**: All lives lost, display final score
+## Troubleshooting
 
-### Game Mechanics
-- **Scoring**: +1 point per correct guess
-- **Lives**: Start with 3 lives
-- **Hints**: Partial channel name after first wrong attempt
-- **Reset**: Game resets after all lives lost
+**API Issues**: The app automatically falls back to mock data when YouTube API quota is exceeded.
 
-## Deployment
+**Port Conflicts**: Kill processes on port 5000: `pkill -f "node.*5000"`
 
-### Vercel Deployment
-The project is configured for automatic deployment on Vercel:
-
-1. **Frontend**: Deployed as static React app
-2. **Backend**: Deployed as serverless functions
-3. **Environment Variables**: Configure `YOUTUBE_API_KEY` in Vercel dashboard
-4. **Custom Domain**: Supports custom domain configuration
-
-### Build Commands
-```bash
-# Frontend build
-npm run build
-
-# Deploy to Vercel
-vercel --prod
-```
-
-## Future Enhancements
-
-### Planned Features
-- **Difficulty Levels**: Easy, Medium, Hard based on subscriber count
-- **Multiplayer Mode**: Real-time competitive gameplay
-- **User Authentication**: Account system with persistent high scores
-- **Statistics Dashboard**: Player performance analytics
-- **More Particle Effects**: Additional visual enhancements
-- **Sound Effects**: Audio feedback for interactions
-- **Leaderboard**: Global and friends leaderboards
-- **Social Sharing**: Share scores on social media
-
-### Technical Improvements
-- **Progressive Web App**: Offline capability and app-like experience
-- **Database Integration**: User data persistence
-- **Caching System**: Improve API response times
-- **Analytics**: User behavior tracking
-- **Internationalization**: Multi-language support
+**Missing API Key**: Add your YouTube API key to `.env` file.
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps:
-
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch  
 5. Open a Pull Request
 
 ---

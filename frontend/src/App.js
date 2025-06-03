@@ -12,6 +12,7 @@ const App = () => {
     const [hint, setHint] = useState('');
     const [attempts, setAttempts] = useState(0);
     const [apiDown, setApiDown] = useState(false);
+    const [apiError, setApiError] = useState('');
     const [buttonClicked, setButtonClicked] = useState(false);
 
     useEffect(() => {
@@ -20,14 +21,32 @@ const App = () => {
     
     const fetchVideoData = async () => {
         try {
-            const response = await axios.get('https://guess-the-youtuber.vercel.app/api/get-video');
+            const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+            const response = await axios.get(`${apiBaseUrl}/get-video`);
             setThumbnail(response.data.thumbnail);
             setChannelTitle(response.data.channelTitle);
             setHint(''); // Reset hint
             setAttempts(0); // Reset attempts
             setApiDown(false); // Reset API down state
+            setApiError(''); // Reset API error
         } catch (error) {
             console.error('Error fetching video data:', error);
+            
+            if (error.response) {
+                const status = error.response.status;
+                const errorData = error.response.data;
+                
+                if (status === 403) {
+                    setApiError('YouTube API quota exceeded. Please try again later.');
+                } else if (status === 500) {
+                    setApiError(errorData.error || 'Server error occurred.');
+                } else {
+                    setApiError(`API Error: ${errorData.error || 'Unknown error'}`);
+                }
+            } else {
+                setApiError('Unable to connect to the server.');
+            }
+            
             setApiDown(true); // Set API down state
         }
     };
@@ -70,7 +89,7 @@ const App = () => {
                 
                 {apiDown && (
                     <div className="api-down">
-                        🚫 API is currently down. Please try again later!
+                        🚫 {apiError || 'API is currently down. Please try again later!'}
                     </div>
                 )}
                 

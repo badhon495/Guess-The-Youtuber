@@ -13,9 +13,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -r https://x-access-token:${GH_TOKEN}@github.com/badhon495/Guess-The-Youtuber.git"
+    "eject": "react-scripts eject"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
@@ -32,9 +30,5 @@
       "last 1 chrome version",
       "last 1 firefox version"
     ]
-  },
-  "devDependencies": {
-    "gh-pages": "^6.1.1"
-  },
-  "homepage": "https://badhon495.github.io/Guess-The-Youtuber"
+  }
 }
