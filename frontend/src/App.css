@@ -1,237 +1,280 @@
-/* App.css */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* App.css - GuessMe.io Style */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html, body {
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background: #0a0a0f;
+    color: #ffffff;
+    overflow-x: hidden;
 }
 
 .App {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: background-color 0.5s, color 0.5s;
+    min-height: 100vh;
+    background: #0a0a0f;
+    position: relative;
+    z-index: 1;
 }
 
-.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
+/* Particles Background */
+#tsparticles {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 0 !important;
+    pointer-events: auto !important;
 }
 
-header {
+#tsparticles canvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Main Content */
+.content {
+    position: relative;
+    z-index: 2;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 10px 20px;
-    background: none; /* Removes the background color */
-    color: inherit; /* Inherits the color from the parent element */
-    border: none; /* Removes the border */
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
 }
 
-
-.dark-mode-button {
-    background: #444;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ff6b9d, #4ecdc4, #45b7d1, #f9ca24, #6c5ce7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
 }
 
-.hamburger {
-    font-size: 24px;
-    cursor: pointer;
+.content > p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    line-height: 1.6;
 }
 
-.dropdown-menu {
-    position: absolute;
-    top: 50px;
-    left: 20px;
-    background: #333;
-    color: #fff;
-    border: 1px solid #444;
-    padding: 10px;
-    z-index: 1000;
-}
-
-.dropdown-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.dropdown-menu ul li {
-    margin: 10px 0;
-}
-
-.dropdown-menu ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.dropdown-menu ul li a:hover {
-    text-decoration: underline;
-}
-
+/* Game Container */
 .game-container {
-    min-height: 450px; /* Adjust as needed */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 2rem 0;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"], button {
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 4px;
-    width: 100%; /* Make the width responsive */
-    box-sizing: border-box; /* Include padding and border in element's total width */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Add transition */
+.game-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
-/* Styles for light mode */
-.light-mode input[type="text"], .light-mode button {
-    border: 1px solid #ccc; /* Light gray border */
-    background: #fff; /* White background */
-    color: #333; /* Dark gray text */
+.game-container img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
 }
 
-/* Styles for dark mode */
-.dark-mode input[type="text"] {
-    border: 1px solid #334491; /* Dark gray border */
-    background: #121212; /* Dark gray background */
-    color: #ffffff; /* White text */
+.game-container img:hover {
+    transform: scale(1.02);
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+input[type="text"] {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #ff6b9d;
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 button {
-    background: #008cba;
-    color: #fff;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff6b9d, #4ecdc4);
+    color: #ffffff;
     cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Adjust styles for larger screens */
-@media (min-width: 768px) {
-    input[type="text"], button {
-        width: auto; /* Reset the width */
-    }
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
 }
 
-
-.hint {
-    font-size: 1.2em;
-    color: #ff6347;
-    margin: 10px 0;
-    transition: transform 0.3s ease;
-    animation: hint-animation 2s infinite;
+button:active {
+    transform: translateY(0);
 }
 
-@keyframes hint-animation {
+button.click {
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
 
+/* Status and Hint */
 .status {
     display: flex;
-    justify-content: space-between;
-    font-size: 1.5em;
-    margin: 20px 0;
+    justify-content: space-around;
+    gap: 2rem;
+    margin-top: 1rem;
 }
 
 .status p {
-    margin: 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
 }
 
-/* Styles for dark mode */
-.dark-mode .status {
-    color: #ddd; /* Light gray text */
-}
-
-.dark-mode .status p {
-    background: #121212; /* Dark gray box */
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1); /* Light box shadow */
-}
-
-/* Styles for light mode */
-.light-mode .status {
-    color: #666666; /* Dark gray text */
-}
-
-.light-mode .status p {
-    background: #f4f4f4; /* Light gray box */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Dark box shadow */
-}
-
-footer {
-    margin-top: 50px;
-    padding: 10px;
-    background: none; /* Removes the background color */
-    color: inherit; /* Inherits the color from the parent element */
-    border: none; /* Removes the border */
-    font-family: 'Roboto', sans-serif; /* Matches the font of the content */
-    text-align: center; /* Centers the text */
-}
-
-
-footer a {
-    color: #007bff;
-    text-decoration: none;
-    color: inherit; /* Inherits the color from the parent element */
-    font-size: 1.2em; /* Matches the font size of the content */
-}
-
-footer a:hover {
-    color: #0056b3;
-}
-
-.dark-mode-button img {
-    width: 30px; /* Adjust as needed */
-    height: 30px; /* Adjust as needed */
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover; /* Ensures the aspect ratio of the image is maintained */
-    margin-right: 10px; /* Adds some space to the right of the image */
-}
-
-.dark-mode-button {
-    background: none; /* Removes the background color */
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+.hint {
+    padding: 1rem;
+    background: rgba(249, 202, 36, 0.1);
+    border: 1px solid rgba(249, 202, 36, 0.3);
+    border-radius: 12px;
+    margin: 1rem 0;
+    font-weight: 500;
+    color: #f9ca24;
 }
 
 .api-down {
-    /* position: fixed; */
-    top: 0;
-    right: 0;
-    padding: 100px;
-    background: red;
-    color: white;
+    padding: 1rem 2rem;
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    border-radius: 12px;
+    margin: 1rem 0;
+    color: #dc3545;
+    font-weight: 500;
 }
 
-
-.content {
-    font-family: 'Roboto', sans-serif;
+/* Footer */
+footer {
+    position: relative;
+    z-index: 2;
     text-align: center;
-    color: #333;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(10, 10, 15, 0.8);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.content h1 {
-    font-size: 2.5em;
-    font-weight: 700;
-    color: #ff6347;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+footer a {
+    color: #ff6b9d;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.content p {
-    font-size: 1.2em;
-    line-height: 1.6;
-    color: #666;
+footer a:hover {
+    color: #4ecdc4;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .content {
+        padding: 1rem;
+    }
+    
+    .game-container {
+        padding: 2rem 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .status {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    form {
+        gap: 1rem;
+    }
+    
+    input[type="text"], button {
+        font-size: 1rem;
+    }
+    
+    #tsparticles {
+        pointer-events: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .content > p {
+        font-size: 1rem;
+    }
+    
+    .game-container {
+        padding: 1.5rem 1rem;
+    }
 }
 

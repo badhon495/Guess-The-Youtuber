@@ -10,5 +10,9 @@
     "install:all": "npm install --workspaces",
     "start:frontend": "npm --workspace frontend start",
     "start:backend": "npm --workspace backend start"
+  },
+  "dependencies": {
+    "react-tsparticles": "^2.12.2",
+    "tsparticles": "^3.8.1"
   }
 }

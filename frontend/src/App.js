@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import sun from './components/dark_mode_image/sun.png';
-import moon from './components/dark_mode_image/moon.png';
-
+import ParticlesBackground from './components/ParticlesBackground';
 
 const App = () => {
     const [thumbnail, setThumbnail] = useState('');
@@ -13,11 +11,8 @@ const App = () => {
     const [lives, setLives] = useState(3);
     const [hint, setHint] = useState('');
     const [attempts, setAttempts] = useState(0);
-    const [darkMode, setDarkMode] = useState(true);
-    const [menuOpen, setMenuOpen] = useState(false);
     const [apiDown, setApiDown] = useState(false);
     const [buttonClicked, setButtonClicked] = useState(false);
-
 
     useEffect(() => {
         fetchVideoData();
@@ -37,12 +32,11 @@ const App = () => {
         }
     };
 
-
- 
     const handleSubmit = (e) => {
         e.preventDefault();
         setButtonClicked(true);
-        setTimeout(() => setButtonClicked(false), 9000);
+        setTimeout(() => setButtonClicked(false), 600);
+        
         if (userInput.toLowerCase() === channelTitle.toLowerCase()) {
             setScore(score + 1);
             fetchVideoData();
@@ -55,7 +49,7 @@ const App = () => {
                 // Second wrong attempt, decrement lives
                 setLives(lives - 1);
                 if (lives <= 1) {
-                    alert('Game Over');
+                    alert('🎮 Game Over! Final Score: ' + score);
                     setScore(0);
                     setLives(3);
                 } else {
@@ -66,58 +60,51 @@ const App = () => {
         setUserInput('');
     };
 
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-    };
-
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
-
     return (
-        <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
-            <header>
-                <div className="hamburger" onClick={toggleMenu}>
-                    &#9776;
-                </div>
-                {menuOpen && (
-                    <nav className="dropdown-menu">
-                        <ul>
-                            <li><a href="#guess-the-word">Guess the Word</a></li>
-                            <li><a href="#other-project-2">Other Project 2</a></li>
-                            <li><a href="#other-project-3">Other Project 3</a></li>
-                        </ul>
-                    </nav>
-                )}
-                <button className="dark-mode-button" onClick={toggleDarkMode}>
-    {darkMode ? <img src={sun} alt="Light Mode" /> : <img src={moon} alt="Dark Mode" />}
-</button>
-            </header>
+        <div className="App">  
+            <ParticlesBackground />
+            
             <main className="content">
-                <h1>Who is This YouTuber?</h1>
-                <p>Gaze upon the thumbnail and let your search prowess guide you through the digital maze. Unravel the enigma and uncover the YouTuber's name hidden within the vibrant video tapestry</p>
-                {apiDown && <div className="api-down">API Down</div>}
+                <h1>Guess The YouTuber</h1>
+                <p>Look at the YouTube thumbnail and guess which YouTuber created this content. Test your knowledge and see how many you can get right!</p>
+                
+                {apiDown && (
+                    <div className="api-down">
+                        🚫 API is currently down. Please try again later!
+                    </div>
+                )}
+                
                 <div className="game-container">
-                    <img src={thumbnail}/>
+                    {thumbnail && <img src={thumbnail} alt="YouTube Thumbnail" />}
+                    
                     <form onSubmit={handleSubmit}>
-            <input 
-                type="text" 
-                value={userInput} 
-                onChange={(e) => setUserInput(e.target.value)} 
-                placeholder="Enter YouTuber's Name" 
-            />
-            <button type="submit" className={buttonClicked ? 'circle click' : ''}>Submit</button>
-        </form>
-                    {hint && <p className="hint">Hint: {hint}</p>}
+                        <input 
+                            type="text" 
+                            value={userInput} 
+                            onChange={(e) => setUserInput(e.target.value)} 
+                            placeholder="Enter YouTuber's Name..." 
+                            required
+                        />
+                        <button type="submit" className={buttonClicked ? 'circle click' : ''}>
+                            Submit Guess
+                        </button>
+                    </form>
+                    
+                    {hint && (
+                        <div className="hint">
+                            💡 Hint: {hint}
+                        </div>
+                    )}
+                    
                     <div className="status">
-                        <p>Score: {score}</p>
-                        <p>Lives: {lives}</p>
+                        <p>🏆 Score: {score}</p>
+                        <p>💖 Lives: {lives}</p>
                     </div>
                 </div>
+                <div className="footer">
+                    <p>Made with ❤️ by <a href="https://github.com/badhon495" target="_blank" rel="noopener noreferrer">badhon495</a></p>
+                </div>
             </main>
-            <footer>
-    Created by <a href="https://github.com/badhon495" target="_blank" rel="noopener noreferrer">badhon495</a>
-</footer>
         </div>
     );
 };
