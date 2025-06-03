@@ -37,7 +37,7 @@ const App = () => {
                 const errorData = error.response.data;
                 
                 if (status === 403) {
-                    setApiError('YouTube API quota exceeded. Please try again later.');
+                    setApiError(' YouTube API quota exceeded. Daily limit reached. Please try again tomorrow!');
                 } else if (status === 500) {
                     setApiError(errorData.error || 'Server error occurred.');
                 } else {

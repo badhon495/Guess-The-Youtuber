@@ -13,8 +13,6 @@
 
 ## Features
 
-## Features
-
 - **YouTube Thumbnail Guessing**: Random thumbnails from popular YouTubers
 - **Scoring & Lives System**: Points for correct guesses, 3 lives with game over
 - **Smart Hints**: Partial channel name revealed after first wrong attempt
@@ -83,11 +81,11 @@ Guess-The-Youtuber/
 
 ## Troubleshooting
 
-**API Issues**: The app automatically falls back to mock data when YouTube API quota is exceeded.
+**API Quota Exceeded**: When YouTube API daily quota is reached, the app displays a message asking users to try again tomorrow.
 
 **Port Conflicts**: Kill processes on port 5000: `pkill -f "node.*5000"`
 
-**Missing API Key**: Add your YouTube API key to `.env` file.
+**Missing API Key**: Add your YouTube API key to `backend/.env` file.
 
 ## Contributing
 

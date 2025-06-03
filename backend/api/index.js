@@ -25,33 +25,6 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// Mock data endpoint for development when API quota is exceeded
-app.get('/api/get-video-mock', async (req, res) => {
-    const mockData = [
-        {
-            thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-            channelTitle: "PewDiePie"
-        },
-        {
-            thumbnail: "https://i.ytimg.com/vi/L_jWHffIx5E/maxresdefault.jpg",
-            channelTitle: "MrBeast"
-        },
-        {
-            thumbnail: "https://i.ytimg.com/vi/ZCoqR9Bwx1Y/maxresdefault.jpg",
-            channelTitle: "Markiplier"
-        },
-        {
-            thumbnail: "https://i.ytimg.com/vi/jNQXAC9IVRw/maxresdefault.jpg",
-            channelTitle: "Dude Perfect"
-        }
-    ];
-    
-    const randomMock = mockData[Math.floor(Math.random() * mockData.length)];
-    console.log(`Returning mock data for: ${randomMock.channelTitle}`);
-    
-    res.json(randomMock);
-});
-
 // Load channel names from the file
 const channelNamesPath = path.join(__dirname, '..', 'channel_names.txt');
 const channelNames = fs.readFileSync(channelNamesPath, 'utf-8').split('\n');
@@ -109,32 +82,12 @@ app.get('/api/get-video', async (req, res) => {
         console.error('API Error:', error.message);
         console.error('Full error:', error.response?.data || error);
         
-        // If quota exceeded, fall back to mock data
+        // Return proper error response for quota exceeded
         if (error.response && error.response.status === 403) {
-            console.log('API quota exceeded, falling back to mock data');
-            const mockData = [
-                {
-                    thumbnail: "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-                    channelTitle: "PewDiePie"
-                },
-                {
-                    thumbnail: "https://i.ytimg.com/vi/L_jWHffIx5E/maxresdefault.jpg",
-                    channelTitle: "MrBeast"
-                },
-                {
-                    thumbnail: "https://i.ytimg.com/vi/ZCoqR9Bwx1Y/maxresdefault.jpg",
-                    channelTitle: "Markiplier"
-                },
-                {
-                    thumbnail: "https://i.ytimg.com/vi/jNQXAC9IVRw/maxresdefault.jpg",
-                    channelTitle: "Dude Perfect"
-                }
-            ];
-            
-            const randomMock = mockData[Math.floor(Math.random() * mockData.length)];
-            return res.json({
-                ...randomMock,
-                isMockData: true
+            return res.status(403).json({
+                error: 'YouTube API quota exceeded',
+                message: 'Daily quota limit has been reached. Please try again tomorrow.',
+                details: error.response.data
             });
         }
         
