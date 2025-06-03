@@ -6,22 +6,15 @@
     "axios": "^0.24.0",
     "react": "^18.0.0",
     "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^4.0.1"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "description": "Guess The YouTuber - A fun game where players guess YouTubers based on video thumbnails",
+  "license": "MIT",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -32,9 +25,5 @@
       "last 1 chrome version",
       "last 1 firefox version"
     ]
-  },
-  "homepage": "https://badhon495.github.io/Guess-The-Youtuber",
-  "devDependencies": {
-    "gh-pages": "^6.3.0"
   }
 }

@@ -1,0 +1,36 @@
+[build]
+  command = "cd frontend && npm install && npm run build"
+  functions = "api"
+  publish = "frontend/build"
+
+[functions]
+  directory = "api"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/health"
+  to = "/.netlify/functions/health"
+  status = 200
+
+[[redirects]]
+  from = "/api/get-video"
+  to = "/.netlify/functions/get-video"
+  status = 200
+
+[[redirects]]
+  from = "/health"
+  to = "/.netlify/functions/health"
+  status = 200
+
+[[redirects]]
+  from = "/get-video"
+  to = "/.netlify/functions/get-video"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  NODE_ENV = "production"

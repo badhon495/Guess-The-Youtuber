@@ -1,21 +1,16 @@
 {
-  "name": "guess-the-youtuber-monorepo",
-  "private": true,
+  "name": "guess-the-youtuber-netlify",
   "version": "1.0.0",
-  "workspaces": [
-    "frontend",
-    "backend"
-  ],
+  "description": "Guess The YouTuber - A fun game to test your knowledge of popular YouTubers",
+  "main": "index.js",
   "scripts": {
-    "install:all": "npm install --workspaces",
-    "start:frontend": "npm --workspace frontend start",
-    "start:backend": "npm --workspace backend start"
+    "dev": "netlify dev",
+    "build": "cd frontend && npm run build"
   },
+  "keywords": ["game", "youtube", "react", "netlify"],
+  "author": "Badhon",
+  "license": "MIT",
   "dependencies": {
-    "axios": "^1.9.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "react-tsparticles": "^2.12.2",
-    "tsparticles": "^3.8.1"
+    "axios": "^1.6.2"
   }
 }

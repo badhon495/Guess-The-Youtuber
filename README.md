@@ -26,34 +26,39 @@
 ## Technology Stack
 
 - **Frontend**: React 18, CSS3 animations, Axios
-- **Backend**: Node.js, Express, YouTube Data API v3
-- **Deployment**: Vercel
+- **Backend**: Netlify Functions, YouTube Data API v3
+- **Deployment**: Netlify
+- **Live URL**: https://guess-the-youtuber-game.netlify.app
 
 ## Prerequisites
 - Node.js 18+ 
 - npm (Node Package Manager)
 - YouTube Data API v3 key
+- Netlify CLI (for deployment)
 
 ## Quick Start
 
-For a quick setup, run these commands:
+For local development:
 
 ```bash
-# Clone and setup
+# Clone the repository
 git clone https://github.com/badhon495/Guess-The-Youtuber.git
 cd Guess-The-Youtuber
-npm install
 
-# Setup environment variables
-cp frontend/.env.example frontend/.env
-cp backend/.env.example backend/.env
+# Install frontend dependencies
+cd frontend && npm install
 
-# Add your YouTube API key to backend/.env file
-echo "YOUTUBE_API_KEY=your_actual_api_key_here" > backend/.env
+# Start local development
+npm start
+```
 
-# Start both servers
-npm run start:backend &
-npm run start:frontend
+For Netlify Functions testing:
+```bash
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Start local development with functions
+netlify dev
 ```
 
 Then open `http://localhost:3000` in your browser!
@@ -63,20 +68,23 @@ Then open `http://localhost:3000` in your browser!
 
 ```
 Guess-The-Youtuber/
-├── .env.example                # Environment variables
-├── backend/
-│   ├── api/index.js           # Main API endpoint
-│   └── channel_names.txt      # YouTuber channels list
-└── frontend/
-    ├── src/
-    │   ├── App.js             # Main React component
-    │   └── components/        # Floating particles system
-    └── public/                # Static assets
+├── netlify.toml               # Netlify deployment configuration
+├── api/                       # Netlify Functions
+│   ├── health.js             # Health check endpoint
+│   └── get-video.js          # Main game API endpoint
+├── frontend/                  # React application
+│   ├── src/
+│   │   ├── App.js            # Main React component
+│   │   ├── components/       # Floating particles system
+│   │   └── index.js          # React entry point
+│   └── public/               # Static assets
+└── backend/
+    └── channel_names.txt     # YouTuber channels list (reference)
 ```
 
 ## How It Works
 
-1. Backend fetches random YouTuber data using YouTube Data API v3
+1. Netlify Functions fetch random YouTuber data using YouTube Data API v3
 2. Frontend displays video thumbnail to player
 3. Player guesses the YouTuber's name
 4. Correct guess: +1 point, new video loads
