@@ -1,0 +1,14 @@
+{
+  "name": "guess-the-youtuber-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install:all": "npm install --workspaces",
+    "start:frontend": "npm --workspace frontend start",
+    "start:backend": "npm --workspace backend start"
+  }
+}

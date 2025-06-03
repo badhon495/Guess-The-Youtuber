@@ -25,10 +25,11 @@
     cd who-is-this-youtuber
     ```
 
-2. Install dependencies:
+2. Install all dependencies for both frontend and backend:
     ```sh
     npm install
     ```
+    This will install dependencies for both `frontend` and `backend` using the root `package.json` workspaces.
 
 3. Set up your YouTube Data API key:
    - Create a file named `.env` in the root directory.
@@ -44,12 +45,12 @@
 ## Running the Project
 1. Start the backend server:
     ```sh
-    node server.js
+    npm run start:backend
     ```
 
 2. Start the frontend development server:
     ```sh
-    npm start
+    npm run start:frontend
     ```
 
 3. Open your web browser and navigate to `http://localhost:3000`.
